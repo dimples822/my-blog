@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
@@ -111,7 +110,8 @@ public class BlogController {
         if (StringUtils.isEmpty(blogContent)) {
             return ResultGenerator.genFailResult("请输入文章内容");
         }
-        if (blogTags.trim().length() > 100000) {
+        StringBuilder blogStr = new StringBuilder(blogTags);
+        if (blogStr.length() > 100000) {
             return ResultGenerator.genFailResult("文章内容过长");
         }
         if (StringUtils.isEmpty(blogCoverImage)) {
@@ -163,7 +163,8 @@ public class BlogController {
         if (StringUtils.isEmpty(blogContent)) {
             return ResultGenerator.genFailResult("请输入文章内容");
         }
-        if (blogTags.trim().length() > 100000) {
+        StringBuilder blogStr = new StringBuilder(blogTags);
+        if (blogStr.length() > 100000) {
             return ResultGenerator.genFailResult("文章内容过长");
         }
         if (StringUtils.isEmpty(blogCoverImage)) {
@@ -193,13 +194,14 @@ public class BlogController {
                                      @RequestParam(name = "editormd-image-file", required = true)
                                              MultipartFile file) throws IOException, URISyntaxException {
         String fileName = file.getOriginalFilename();
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        String suffixName = null;
+        if (fileName != null) {
+            suffixName = fileName.substring(fileName.lastIndexOf("."));
+        }
         //生成文件名称通用方法
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
         Random r = new Random();
-        StringBuilder tempName = new StringBuilder();
-        tempName.append(sdf.format(new Date())).append(r.nextInt(100)).append(suffixName);
-        String newFileName = tempName.toString();
+        String newFileName = sdf.format(new Date()) + r.nextInt(100) + suffixName;
         //创建文件
         File destFile = new File(Constants.FILE_UPLOAD_DIC + newFileName);
         String fileUrl = MyBlogUtils.getHost(new URI(request.getRequestURL() + "")) + "/upload/" + newFileName;
@@ -214,8 +216,6 @@ public class BlogController {
             request.setCharacterEncoding("utf-8");
             response.setHeader("Content-Type", "text/html");
             response.getWriter().write("{\"success\": 1, \"message\":\"success\",\"url\":\"" + fileUrl + "\"}");
-        } catch (UnsupportedEncodingException e) {
-            response.getWriter().write("{\"success\":0}");
         } catch (IOException e) {
             response.getWriter().write("{\"success\":0}");
         }
