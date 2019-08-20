@@ -72,7 +72,6 @@ function tagAdd() {
                         icon: "error",
                     });
                 }
-                ;
             },
             error: function () {
                 swal("操作失败", {
@@ -94,7 +93,7 @@ function deleteTag() {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-    }).then((flag) = > {
+    }).then((flag) => {
         if(flag) {
             $.ajax({
                 type: "POST",
