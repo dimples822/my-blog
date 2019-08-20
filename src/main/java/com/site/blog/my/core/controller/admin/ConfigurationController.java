@@ -33,8 +33,8 @@ public class ConfigurationController {
     @ResponseBody
     public Result website(@RequestParam(value = "WEBSITE_NAME", required = false) String websiteName,
                           @RequestParam(value = "WEBSITE_DESCRIPTION", required = false) String websiteDescription,
-                          @RequestParam(value = "websiteLogo", required = false) String websiteLogo,
-                          @RequestParam(value = "websiteIcon", required = false) String websiteIcon) {
+                          @RequestParam(value = "WEBSITE_LOGO", required = false) String websiteLogo,
+                          @RequestParam(value = "WEBSITE_ICON", required = false) String websiteIcon) {
         int updateResult = 0;
         if (!StringUtils.isEmpty(websiteName)) {
             updateResult += configService.updateConfig("WEBSITE_NAME", websiteName);
@@ -43,54 +43,54 @@ public class ConfigurationController {
             updateResult += configService.updateConfig("WEBSITE_DESCRIPTION", websiteDescription);
         }
         if (!StringUtils.isEmpty(websiteLogo)) {
-            updateResult += configService.updateConfig("websiteLogo", websiteLogo);
+            updateResult += configService.updateConfig("WEBSITE_LOGO", websiteLogo);
         }
         if (!StringUtils.isEmpty(websiteIcon)) {
-            updateResult += configService.updateConfig("websiteIcon", websiteIcon);
+            updateResult += configService.updateConfig("WEBSITE_ICON", websiteIcon);
         }
         return ResultGenerator.genSuccessResult(updateResult > 0);
     }
 
     @PostMapping("/configurations/userInfo")
     @ResponseBody
-    public Result userInfo(@RequestParam(value = "yourAvatar", required = false) String yourAvatar,
-                           @RequestParam(value = "yourName", required = false) String yourName,
-                           @RequestParam(value = "yourEmail", required = false) String yourEmail) {
+    public Result userInfo(@RequestParam(value = "YOUR_AVATAR", required = false) String yourAvatar,
+                           @RequestParam(value = "YOUR_NAME", required = false) String yourName,
+                           @RequestParam(value = "YOUR_EMAIL", required = false) String yourEmail) {
         int updateResult = 0;
         if (!StringUtils.isEmpty(yourAvatar)) {
-            updateResult += configService.updateConfig("yourAvatar", yourAvatar);
+            updateResult += configService.updateConfig("YOUR_AVATAR", yourAvatar);
         }
         if (!StringUtils.isEmpty(yourName)) {
-            updateResult += configService.updateConfig("yourName", yourName);
+            updateResult += configService.updateConfig("YOUR_NAME", yourName);
         }
         if (!StringUtils.isEmpty(yourEmail)) {
-            updateResult += configService.updateConfig("yourEmail", yourEmail);
+            updateResult += configService.updateConfig("YOUR_EMAIL", yourEmail);
         }
         return ResultGenerator.genSuccessResult(updateResult > 0);
     }
 
     @PostMapping("/configurations/footer")
     @ResponseBody
-    public Result footer(@RequestParam(value = "footerAbout", required = false) String footerAbout,
-                         @RequestParam(value = "footerICP", required = false) String footerIcp,
-                         @RequestParam(value = "footerCopyRight", required = false) String footerCopyRight,
-                         @RequestParam(value = "footerPoweredBy", required = false) String footerPoweredBy,
-                         @RequestParam(value = "footerPoweredByURL", required = false) String footerPoweredByUrl) {
+    public Result footer(@RequestParam(value = "FOOTER_ABOUT", required = false) String footerAbout,
+                         @RequestParam(value = "FOOTER_ICP", required = false) String footerIcp,
+                         @RequestParam(value = "FOOTER_COPY_RIGHT", required = false) String footerCopyRight,
+                         @RequestParam(value = "FOOTER_POWERED_BY", required = false) String footerPoweredBy,
+                         @RequestParam(value = "FOOTER_POWERED_BY_URL", required = false) String footerPoweredByUrl) {
         int updateResult = 0;
         if (!StringUtils.isEmpty(footerAbout)) {
-            updateResult += configService.updateConfig("footerAbout", footerAbout);
+            updateResult += configService.updateConfig("FOOTER_ABOUT", footerAbout);
         }
         if (!StringUtils.isEmpty(footerIcp)) {
-            updateResult += configService.updateConfig("footerICP", footerIcp);
+            updateResult += configService.updateConfig("FOOTER_ICP", footerIcp);
         }
         if (!StringUtils.isEmpty(footerCopyRight)) {
-            updateResult += configService.updateConfig("footerCopyRight", footerCopyRight);
+            updateResult += configService.updateConfig("FOOTER_COPY_RIGHT", footerCopyRight);
         }
         if (!StringUtils.isEmpty(footerPoweredBy)) {
-            updateResult += configService.updateConfig("footerPoweredBy", footerPoweredBy);
+            updateResult += configService.updateConfig("FOOTER_POWERED_BY", footerPoweredBy);
         }
         if (!StringUtils.isEmpty(footerPoweredByUrl)) {
-            updateResult += configService.updateConfig("footerPoweredByURL", footerPoweredByUrl);
+            updateResult += configService.updateConfig("FOOTER_POWERED_BY_URL", footerPoweredByUrl);
         }
         return ResultGenerator.genSuccessResult(updateResult > 0);
     }

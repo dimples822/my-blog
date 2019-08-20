@@ -1,7 +1,7 @@
 package com.site.blog.my.core.service.impl;
 
-import com.site.blog.my.core.mapper.BlogConfigMapper;
 import com.site.blog.my.core.entity.BlogConfig;
+import com.site.blog.my.core.mapper.BlogConfigMapper;
 import com.site.blog.my.core.service.ConfigService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +13,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * <br>系统配置<br/>
+ *
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2019/8/20
+ */
 @Service
 public class ConfigServiceImpl implements ConfigService {
-    @Autowired
+
     private BlogConfigMapper configMapper;
 
-    public static final String WEBSITE_NAME = "DIMPLES BLOG";
-    public static final String WEBSITE_DESCRIPTION = "个人学习与工作的总结";
-    public static final String websiteLogo = "/admin/dist/img/logo2.png";
-    public static final String websiteIcon = "/admin/dist/img/favicon.png";
+    @Autowired
+    public ConfigServiceImpl(BlogConfigMapper configMapper) {
+        this.configMapper = configMapper;
+    }
 
-    public static final String yourAvatar = "/admin/dist/img/13.png";
-    public static final String yourEmail = "1126834403@qq.com";
-    public static final String yourName = "DIMPLES";
+    private static final String WEBSITE_NAME = "DIMPLES BLOG";
+    private static final String WEBSITE_DESCRIPTION = "个人学习与工作的总结";
+    private static final String WEBSITE_LOGO = "/admin/dist/img/logo2.png";
+    private static final String WEBSITE_ICON = "/admin/dist/img/logo_zhongyjpng";
 
-    public static final String footerAbout = "DIMPLES的博客. have fun.";
-    public static final String footerICP = "浙ICP备 xxxxxx-x号";
-    public static final String footerCopyRight = "@2019 dimples";
-    public static final String footerPoweredBy = "dimples blog";
-    public static final String footerPoweredByURL = "##";
+    private static final String YOUR_AVATAR = "/admin/dist/img/logo_zhongyj.png";
+    private static final String YOUR_EMAIL = "1126834403@qq.com";
+    private static final String YOUR_NAME = "DIMPLES";
+
+    private static final String FOOTER_ABOUT = "DIMPLES的博客. have fun.";
+    private static final String FOOTER_ICP = "浙ICP备 xxxxxx-x号";
+    private static final String FOOTER_COPY_RIGHT = "@2019 dimples";
+    private static final String FOOTER_POWERED_BY = "dimples blog";
+    private static final String FOOTER_POWERED_BY_URL = "##";
 
     @Override
     public int updateConfig(String configName, String configValue) {
@@ -59,35 +70,35 @@ public class ConfigServiceImpl implements ConfigService {
             if ("WEBSITE_DESCRIPTION".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
                 config.setValue(WEBSITE_DESCRIPTION);
             }
-            if ("websiteLogo".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(websiteLogo);
+            if ("WEBSITE_LOGO".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(WEBSITE_LOGO);
             }
-            if ("websiteIcon".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(websiteIcon);
+            if ("WEBSITE_ICON".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(WEBSITE_ICON);
             }
-            if ("yourAvatar".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourAvatar);
+            if ("YOUR_AVATAR".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(YOUR_AVATAR);
             }
-            if ("yourEmail".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourEmail);
+            if ("YOUR_EMAIL".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(YOUR_EMAIL);
             }
-            if ("yourName".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourName);
+            if ("YOUR_NAME".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(YOUR_NAME);
             }
-            if ("footerAbout".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(footerAbout);
+            if ("FOOTER_ABOUT".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(FOOTER_ABOUT);
             }
-            if ("footerICP".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(footerICP);
+            if ("FOOTER_ICP".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(FOOTER_ICP);
             }
-            if ("footerCopyRight".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(footerCopyRight);
+            if ("FOOTER_COPY_RIGHT".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(FOOTER_COPY_RIGHT);
             }
-            if ("footerPoweredBy".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(footerPoweredBy);
+            if ("FOOTER_POWERED_BY".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(FOOTER_POWERED_BY);
             }
-            if ("footerPoweredByURL".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(footerPoweredByURL);
+            if ("FOOTER_POWERED_BY_URL".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
+                config.setValue(FOOTER_POWERED_BY_URL);
             }
         }
         return configMap;
