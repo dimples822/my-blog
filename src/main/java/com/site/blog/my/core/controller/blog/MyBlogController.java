@@ -15,6 +15,7 @@ import com.site.blog.my.core.util.PatternUtil;
 import com.site.blog.my.core.util.Result;
 import com.site.blog.my.core.util.ResultGenerator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -43,18 +43,26 @@ public class MyBlogController {
 
     private static final int COMMENT_BODY_MAX_LENGTH = 200;
 
-    @Resource
+    private static final int LINK_TYPE_FRI = 0;
+    private static final int LINK_TYPE_RECOMMEND = 1;
+    private static final int LINK_TYPE_PRIVATE = 2;
+
     private BlogService blogService;
-    @Resource
     private TagService tagService;
-    @Resource
     private LinkService linkService;
-    @Resource
     private CommentService commentService;
-    @Resource
     private ConfigService configService;
-    @Resource
     private CategoryService categoryService;
+
+    @Autowired
+    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService) {
+        this.blogService = blogService;
+        this.tagService = tagService;
+        this.linkService = linkService;
+        this.commentService = commentService;
+        this.configService = configService;
+        this.categoryService = categoryService;
+    }
 
     /**
      * 首页
@@ -216,13 +224,13 @@ public class MyBlogController {
         Map<Byte, List<BlogLink>> linkMap = linkService.getLinksForLinkPage();
         if (linkMap != null) {
             //判断友链类别并封装数据 0-友链 1-推荐 2-个人网站
-            if (linkMap.containsKey((byte) 0)) {
+            if (linkMap.containsKey((byte) LINK_TYPE_FRI)) {
                 request.setAttribute("favoriteLinks", linkMap.get((byte) 0));
             }
-            if (linkMap.containsKey((byte) 1)) {
+            if (linkMap.containsKey((byte) LINK_TYPE_RECOMMEND)) {
                 request.setAttribute("recommendLinks", linkMap.get((byte) 1));
             }
-            if (linkMap.containsKey((byte) 2)) {
+            if (linkMap.containsKey((byte) LINK_TYPE_PRIVATE)) {
                 request.setAttribute("personalLinks", linkMap.get((byte) 2));
             }
         }
