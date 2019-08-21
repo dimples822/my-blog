@@ -31,13 +31,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author zhongyj
- * @date 2019/8/7
+ * 博客显示页面
+ *
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2019/8/21
  */
 @Controller
 public class MyBlogController {
 
     public static final String THEME = "amaze";
+
+    private static final int COMMENT_BODY_MAX_LENGTH = 200;
 
     @Resource
     private BlogService blogService;
@@ -85,7 +89,7 @@ public class MyBlogController {
     /**
      * Categories页面(包括分类数据和标签数据)
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/categories"})
     public String categories(HttpServletRequest request) {
@@ -99,7 +103,7 @@ public class MyBlogController {
     /**
      * 详情页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/blog/{blogId}", "/article/{blogId}"})
     public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
@@ -116,7 +120,7 @@ public class MyBlogController {
     /**
      * 标签列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/tag/{tagName}"})
     public String tag(HttpServletRequest request, @PathVariable("tagName") String tagName) {
@@ -126,7 +130,7 @@ public class MyBlogController {
     /**
      * 标签列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/tag/{tagName}/{page}"})
     public String tag(HttpServletRequest request, @PathVariable("tagName") String tagName, @PathVariable("page") Integer page) {
@@ -145,7 +149,7 @@ public class MyBlogController {
     /**
      * 分类列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/category/{categoryName}"})
     public String category(HttpServletRequest request, @PathVariable("categoryName") String categoryName) {
@@ -155,7 +159,7 @@ public class MyBlogController {
     /**
      * 分类列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/category/{categoryName}/{page}"})
     public String category(HttpServletRequest request, @PathVariable("categoryName") String categoryName, @PathVariable("page") Integer page) {
@@ -174,7 +178,7 @@ public class MyBlogController {
     /**
      * 搜索列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/search/{keyword}"})
     public String search(HttpServletRequest request, @PathVariable("keyword") String keyword) {
@@ -184,7 +188,7 @@ public class MyBlogController {
     /**
      * 搜索列表页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/search/{keyword}/{page}"})
     public String search(HttpServletRequest request, @PathVariable("keyword") String keyword, @PathVariable("page") Integer page) {
@@ -204,7 +208,7 @@ public class MyBlogController {
     /**
      * 友情链接页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/link"})
     public String link(HttpServletRequest request) {
@@ -264,7 +268,7 @@ public class MyBlogController {
         if (StringUtils.isEmpty(commentBody)) {
             return ResultGenerator.genFailResult("请输入评论内容");
         }
-        if (commentBody.trim().length() > 200) {
+        if (commentBody.trim().length() > COMMENT_BODY_MAX_LENGTH) {
             return ResultGenerator.genFailResult("评论内容过长");
         }
         BlogComment comment = new BlogComment();
@@ -281,7 +285,7 @@ public class MyBlogController {
     /**
      * 关于页面 以及其他配置了subUrl的文章页
      *
-     * @return
+     * @return 页面视图
      */
     @GetMapping({"/{subUrl}"})
     public String detail(HttpServletRequest request, @PathVariable("subUrl") String subUrl) {
