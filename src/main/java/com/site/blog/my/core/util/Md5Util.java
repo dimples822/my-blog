@@ -3,12 +3,14 @@ package com.site.blog.my.core.util;
 import java.security.MessageDigest;
 
 /**
+ * MD5加密
+ *
  * @author zhongyj
  * @date 2019/8/7
  */
-public class MD5Util {
+public class Md5Util {
 
-    private static String byteArrayToHexString(byte b[]) {
+    private static String byteArrayToHexString(byte[] b) {
         StringBuilder resultSb = new StringBuilder();
         for (byte value : b) {
             resultSb.append(byteToHexString(value));
@@ -27,7 +29,7 @@ public class MD5Util {
         return HEX_DIGITS[d1] + HEX_DIGITS[d2];
     }
 
-    public static String MD5Encode(String origin, String charSetName) {
+    public static String mD5Encode(String origin, String charSetName) {
         String resultString = null;
         try {
             resultString = origin;
@@ -39,7 +41,7 @@ public class MD5Util {
                 resultString = byteArrayToHexString(md.digest(resultString
                         .getBytes(charSetName)));
             }
-        } catch (Exception exception) {
+        } catch (Exception ignored) {
         }
         return resultString;
     }

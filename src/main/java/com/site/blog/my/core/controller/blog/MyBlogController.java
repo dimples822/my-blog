@@ -283,7 +283,7 @@ public class MyBlogController {
         comment.setBlogId(blogId);
         comment.setCommentator(MyBlogUtils.cleanString(commentator));
         comment.setEmail(email);
-        if (PatternUtil.isURL(websiteUrl)) {
+        if (PatternUtil.isUrl(websiteUrl)) {
             comment.setWebsiteUrl(websiteUrl);
         }
         comment.setCommentBody(MyBlogUtils.cleanString(commentBody));

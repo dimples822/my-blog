@@ -2,14 +2,15 @@ package com.site.blog.my.core.util;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2019/8/22
  */
+@Data
 public class Result<T> implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 4746940453384732962L;
     private int resultCode;
     private String message;
     private T data;
@@ -22,36 +23,4 @@ public class Result<T> implements Serializable {
         this.message = message;
     }
 
-    public int getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "resultCode=" + resultCode +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
-    }
 }

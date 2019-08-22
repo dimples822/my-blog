@@ -5,12 +5,11 @@ import org.springframework.util.StringUtils;
 /**
  * 响应结果生成工具
  *
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2019/8/22
  */
 public class ResultGenerator {
+
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
     private static final String DEFAULT_FAIL_MESSAGE = "FAIL";
     private static final int RESULT_CODE_SUCCESS = 200;
@@ -30,6 +29,7 @@ public class ResultGenerator {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     public static Result genSuccessResult(Object data) {
         Result result = new Result();
         result.setResultCode(RESULT_CODE_SUCCESS);

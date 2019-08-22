@@ -13,8 +13,7 @@ public class MyBlogUtils {
         URI effectiveUri = null;
         try {
             effectiveUri = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), null, null, null);
-        } catch (Throwable var4) {
-            effectiveUri = null;
+        } catch (Throwable ignored) {
         }
         return effectiveUri;
     }
