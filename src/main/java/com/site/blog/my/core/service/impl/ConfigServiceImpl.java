@@ -32,7 +32,7 @@ public class ConfigServiceImpl implements ConfigService {
     private static final String WEBSITE_NAME = "DIMPLES BLOG";
     private static final String WEBSITE_DESCRIPTION = "个人学习与工作的总结";
     private static final String WEBSITE_LOGO = "/admin/dist/img/logo2.png";
-    private static final String WEBSITE_ICON = "/admin/dist/img/logo_zhongyjpng";
+    private static final String WEBSITE_ICON = "/admin/dist/img/logo_zhongyj.png";
 
     private static final String YOUR_AVATAR = "/admin/dist/img/logo_zhongyj.png";
     private static final String YOUR_EMAIL = "1126834403@qq.com";

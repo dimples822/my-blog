@@ -40,23 +40,24 @@
                     <h1 th:text="${blogDetailVO.blogTitle}"></h1>
                     <span class="meta">
                         <th:block
-                                th:text="${#dates.format(blogDetailVO.createTime, 'yyyy-MM-dd')}"></th:block> &nbsp;
+                                th:text="${#dates.format(blogDetailVO.createTime, 'yyyy-MM-dd')}"/> &nbsp;
                             <div class="comments-view" style="display: inline-block">
                                 <a href="#comments" class="article-comments"><th:block
-                                        th:text="${blogDetailVO.commentCount}"></th:block>条评论</a> &nbsp;
-                                <th:block th:text="${blogDetailVO.blogViews}"></th:block>浏览
+                                        th:text="${blogDetailVO.commentCount}"/>条评论</a> &nbsp;
+                                <th:block th:text="${blogDetailVO.blogViews}"/>浏览
                             </div>
                             </span>
                     <div class="tags post-tags">
                         <th:block th:each="tag : ${blogDetailVO.blogTags}">
                             <a class="tag" rel="tag" th:href="@{'/tag/' + ${tag}}">
-                                <th:block th:text="${tag}"></th:block>
+                                <th:block th:text="${tag}"/>
                             </a>&nbsp;
                         </th:block>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </header>
 <div class="container">
     <div class="am-g am-g-fixed blog-fixed">
@@ -83,12 +84,12 @@
                             <h3 th:text="${comment.commentator}"></h3>
                             <span class="date">
                                        评论时间：<th:block
-                                    th:text="${#dates.format(comment.commentCreateTime, 'yyyy-MM-dd HH:mm:ss')}"></th:block>
+                                    th:text="${#dates.format(comment.commentCreateTime, 'yyyy-MM-dd HH:mm:ss')}"/>
                                     </span>
                         </div>
                     </header>
                     <div class="body">
-                        <th:block th:text="${comment.commentBody}"></th:block>
+                        <th:block th:text="${comment.commentBody}"/>
                     </div>
                 </article>
                 <th:block th:unless="${#strings.isEmpty(comment.replyBody)}">
@@ -100,13 +101,13 @@
                                 <h3 th:text="${configurations.get('yourName')}">十三</h3>
                                 <span class="date">
                                         回复时间： <th:block
-                                        th:text="${#dates.format(comment.replyCreateTime, 'yyyy-MM-dd HH:mm:ss')}"></th:block>
+                                        th:text="${#dates.format(comment.replyCreateTime, 'yyyy-MM-dd HH:mm:ss')}"/>
                                     </span>
 
                             </div>
                         </header>
                         <div class="reply-body">
-                            <th:block th:text="${comment.replyBody}"></th:block>
+                            <th:block th:text="${comment.replyBody}"/>
                         </div>
                     </article>
                 </th:block>
@@ -152,20 +153,22 @@
                 <tr>
                     <td>
                         <input type="hidden" id="blogId" name="blogId"
-                               th:value="${blogDetailVO.blogId}"></input>
+                               th:value="${blogDetailVO.blogId}"/>
+                        <label for="commentator"></label>
                         <input type="text" name="commentator" id="commentator"
-                               placeholder="(*必填)怎么称呼你?">
+                               placeholder="(*必填)怎么称呼你?"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="email" name="email" id="email" placeholder="(*必填)你的联系邮箱">
+                        <label for="email"></label><input type="email" name="email" id="email"
+                                                          placeholder="(*必填)你的联系邮箱">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="websiteUrl" id="websiteUrl"
-                               placeholder="你的网站地址(可不填)">
+                        <label for="websiteUrl"></label><input type="text" name="websiteUrl" id="websiteUrl"
+                                                               placeholder="你的网站地址(可不填)">
                     </td>
                 </tr>
                 <tr>
@@ -175,7 +178,7 @@
                         <img alt="单击图片刷新！" class="pointer"
                              style="margin-top: 15px; border-radius: 25px;"
                              th:src="@{/common/kaptcha}"
-                             onclick="this.src='/common/kaptcha?d='+new Date()*1">
+                             onclick="this.src='/common/kaptcha?d='+new Date()*1" src="">
                     </td>
                 </tr>
                 <tr>

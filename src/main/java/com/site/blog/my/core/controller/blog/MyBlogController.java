@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -307,4 +308,33 @@ public class MyBlogController {
             return "error/error_400";
         }
     }
+
+    /**
+     * 个人笔记
+     *
+     * @return ModelAndView
+     */
+    @GetMapping("/notes")
+    public ModelAndView getNotes() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("notes/note-list");
+        return view;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
