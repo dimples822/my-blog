@@ -317,7 +317,7 @@ public class MyBlogController {
     @GetMapping("/notes")
     public ModelAndView getNotes() {
         ModelAndView view = new ModelAndView();
-        view.setViewName("notes/note-list");
+        view.setViewName("notes/note-index");
         return view;
     }
 
