@@ -1,0 +1,543 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #1b98f8;
+}
+
+
+/*
+ * -- HELPER STYLES --
+ * Over-riding some of the .pure-button styles to make my buttons look unique
+ */
+.primary-button,
+.secondary-button {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: 20px;
+}
+
+.primary-button {
+    color: #fff;
+    background: #1b98f8;
+    margin: 1em 0;
+}
+
+.secondary-button {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 0.5em 2em;
+    font-size: 80%;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65);
+    /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60);
+    /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20);
+    /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221);
+    /* this is a light blue */
+}
+
+/*
+ * -- LAYOUT STYLES --
+ * This layout consists of three main elements, `#nav` (navigation bar), `#list` (note list), and `#main` (note content). All 3 elements are within `#layout`
+ */
+#layout, #nav, #list, #main {
+    margin: 0;
+    padding: 0;
+}
+
+/* Make the navigation 100% width on phones */
+#nav {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    background: rgb(37, 42, 58);
+    text-align: center;
+}
+
+/* Show the "Menu" button on phones */
+#nav .nav-menu-button {
+    display: block;
+    top: 0.5em;
+    right: 0.5em;
+    position: absolute;
+}
+
+/* When "Menu" is clicked, the navbar should be 80% height */
+#nav.active {
+    height: 80%;
+}
+
+/* Don't show the navigation items... */
+.nav-inner {
+    display: none;
+}
+
+/* ...until the "Menu" button is clicked */
+#nav.active .nav-inner {
+    display: block;
+    padding: 2em 0;
+}
+
+/* the menu if fixed on the bottom */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    display: flex;
+    height: 50px;
+    box-shadow: 0 -2px 5px -2px #333;
+    background-color: #fff;
+}
+
+.mobile-bottom-nav__item {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mobile-bottom-nav__item--active {
+    color: red;
+}
+
+.mobile-bottom-nav__item-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search icon STYLES */
+#search-icon {
+    width: 100%;
+    height: 100%;
+    background-color: #303535;
+}
+
+#search-icon:hover {
+    cursor: pointer;
+}
+
+.circle,
+.line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: all 0.25s ease-in-out;
+    transform: translate(-50%, -50%);
+}
+
+#circle-big {
+    width: 32px;
+    height: 32px;
+    /* background-color: #fff; */
+    background-color: #303535;
+    border-radius: 32px;
+
+}
+
+#circle-big.change {
+    background-color: #fff;
+}
+
+#circle-small {
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border-radius: 26px;
+}
+
+#circle-small.change {
+    width: 0;
+    height: 0;
+}
+
+.line {
+    width: 3px;
+    height: 14px;
+    background-color: #303535;
+    border-radius: 3px;
+}
+
+#line-left {
+    display: none;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#line-left.change {
+    display: block;
+    background-color: #303535;
+}
+
+#line-right {
+    top: 27px;
+    left: 27px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#line-right.change {
+    top: 50%;
+    left: 50%;
+    background-color: #303535;
+}
+
+/* search box*/
+
+#full-search {
+    /* height: 100%; */
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#full-search.change {
+    display: block;
+}
+
+#full-search input[type=text] {
+    padding: 15px 0;
+    font-size: 17px;
+    border: none;
+    outline: none; /* focus时，无边框 */
+    float: left;
+    width: 100%;
+    height: 2em;
+    background: #f1f1f1;
+    text-align: center;
+}
+
+#full-search input[type=text]:hover {
+    background: #f1f1f1;
+}
+
+#full-search button {
+    float: left;
+    width: 20%;
+    padding: 15px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+#full-search button:hover {
+    background: #bbb;
+}
+
+/*
+ * -- NAV BAR STYLES --
+ * Styling the default .pure-menu to look a little more unique.
+ */
+#nav .pure-menu {
+    background: transparent;
+    border: none;
+    text-align: left;
+}
+
+#nav .pure-menu-link:hover,
+#nav .pure-menu-link:focus {
+    background: rgb(55, 60, 90);
+}
+
+#nav .pure-menu-link {
+    color: #fff;
+    margin-left: 0.5em;
+}
+
+#nav .pure-menu-heading {
+    border-bottom: none;
+    font-size: 110%;
+    color: rgb(75, 113, 151);
+}
+
+
+/*
+ * -- Note STYLES --
+ * Styles relevant to the note messages, labels, counts, and more.
+ */
+.note-count {
+    color: rgb(75, 113, 151);
+}
+
+.note-label-personal,
+.note-label-work,
+.note-label-travel {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 0.5em;
+    border-radius: 3px;
+}
+
+.note-label-personal {
+    background: #ffc94c;
+}
+
+.note-label-work {
+    background: #41ccb4;
+}
+
+.note-label-travel {
+    background: #40c365;
+}
+
+/* Note Search Styles*/
+/* .note-item-search, .note-item-body, .note-item-footer {
+    padding: 1em 2em;
+} */
+.note-item-search {
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    background: white;
+    padding: 1em 2em;
+    border-left: 6px solid transparent;
+    height: 5em;
+    width: 17.5em;
+    display: none;
+    text-align: center;
+}
+
+.note-item-search input {
+    background: #fff 95% 50% no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA%2FN0AAINkAABw6AAA7GgAADA%2BAAAQkOTsmeoAAAESSURBVHjajNCxS9VRGMbxz71E4OwgoXPQxVEpXCI47%2BZqGP0LCoJO7UVD3QZzb3SwcHB7F3Uw3Zpd%2FAPCcJKG7Dj4u%2FK7Pwp94HDg5Xyf5z1Pr9YKImKANTzFXxzjU2ae6qhXaxURr%2FAFl9hHDy%2FwEK8z89sYVEp5gh84wMvMvGiSJ%2FEV85jNzLMR1McqfmN5BEBmnmMJFSvtpH7jdJiZv7q7Z%2BZPfMdcF6rN%2FT%2F1m2LGBkd4HhFT3dcRMY2FpskxaLNpayciHrWAGeziD7b%2BVfkithuTk8bkGa4wgWFmbrSTZOYeBvjc%2BucQj%2FEe6xHx4Taq1nrnKaW8K6XUUsrHWuvNevdRRLzFGwzvDbXAB9cDAHvhedDruuxSAAAAAElFTkSuQmCC);
+    /* background: #fff 95% 50% no-repeat url(data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=) */
+}
+
+/* Note Item Styles */
+.note-item-body {
+    margin: 1em 0 0 0;
+    padding: 0;
+}
+
+.note-item {
+    padding: 0.9em 1em;
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid transparent;
+    cursor: pointer;
+}
+
+.note-item:hover, .note-item:focus {
+    background: rgb(180, 180, 180);
+}
+
+.note-avatar {
+    border-radius: 3px;
+    margin-right: 0.5em;
+}
+
+.note-name,
+.note-subject {
+    margin: 0;
+}
+
+.note-name {
+    text-transform: uppercase;
+    color: #999;
+}
+
+.note-desc {
+    font-size: 80%;
+    margin: 0.4em 0;
+}
+
+.note-item-selected {
+    background: #eee;
+}
+
+.note-item-unread {
+    border-left: 6px solid #1b98f8;
+}
+
+/* Note Content Styles */
+.note-content-header, .note-content-body, .note-content-footer {
+    padding: 1em 2em;
+}
+
+.note-content-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.note-content-title {
+    margin: 0.5em 0 0;
+}
+
+.note-content-subtitle {
+    font-size: 1em;
+    margin: 0;
+    font-weight: normal;
+}
+
+.note-content-subtitle span {
+    color: #999;
+}
+
+.note-content-controls {
+    margin-top: 2em;
+    text-align: right;
+}
+
+.note-content-controls .secondary-button {
+    margin-bottom: 0.3em;
+}
+
+.note-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (min-width: 40em) {
+
+    /* Move the layout over so we can fit the nav + list in on the left */
+    #layout {
+        padding-left: 500px; /* "left col (nav + list)" width */
+        position: relative;
+    }
+
+    /* These are position:fixed; elements that will be in the left 500px of the screen */
+    #nav, #list {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+    }
+
+    #nav {
+        margin-left: -500px; /* "left col (nav + list)" width */
+        width: 150px;
+        height: 100%;
+    }
+
+    /* Show the menu items on the larger screen */
+    .nav-inner {
+        display: block;
+        padding: 2em 0;
+    }
+
+    /* Hide the "Menu" button on larger screens */
+    #nav .nav-menu-button {
+        display: none;
+    }
+
+    #list {
+        margin-left: -350px;
+        width: 100%;
+        height: 33%;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /*优化滚定条样式*/
+    #list::-webkit-scrollbar { /*滚动条整体样式*/
+        width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+
+    #list::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 5px rgba(120, 120, 120, 0.1);
+        background: #535353;
+    }
+
+    #list::-webkit-scrollbar-track { /*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background: #EDEDED;
+    }
+
+    #main {
+        position: fixed;
+        top: 33%;
+        right: 0;
+        bottom: 0;
+        left: 150px;
+        overflow: auto;
+        width: auto; /* so that it's not 100% */
+    }
+
+    .note-item-search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .note-item-body {
+        margin: 8em 0 0 0;
+        padding: 0;
+    }
+
+    .note-content-header {
+        height: 5em;
+    }
+
+    .mobile-bottom-nav {
+        display: none;
+    }
+}
+
+/*
+ * -- DESKTOP (AND UP) MEDIA QUERIES --
+ * On desktops and other large-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (min-width: 60em) {
+
+    /* This will take up the entire height, and be a little thinner */
+    #list {
+        margin-left: -350px;
+        width: 350px;
+        height: 100%;
+        border-right: 1px solid #ddd;
+    }
+
+    /* This will now take up it's own column, so don't need position: fixed; */
+    #main {
+        position: static;
+        margin: 0;
+        padding: 0;
+    }
+}
+
