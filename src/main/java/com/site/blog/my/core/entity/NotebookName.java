@@ -14,7 +14,7 @@ public class NotebookName implements Serializable {
     /**
     * 笔记本分类
     */
-    private Integer notebookName;
+    private String notebookName;
 
     /**
     * 创建时间

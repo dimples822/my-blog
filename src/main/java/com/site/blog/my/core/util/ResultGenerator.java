@@ -14,6 +14,7 @@ public class ResultGenerator {
     private static final String DEFAULT_FAIL_MESSAGE = "FAIL";
     private static final int RESULT_CODE_SUCCESS = 200;
     private static final int RESULT_CODE_SERVER_ERROR = 500;
+    public static final String DEFAULT_SUCCESS_MESSAGE_NOT_FIND = "未找到数据";
 
     public static Result genSuccessResult() {
         Result result = new Result();

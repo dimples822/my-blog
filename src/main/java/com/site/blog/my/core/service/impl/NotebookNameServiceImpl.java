@@ -1,10 +1,14 @@
 package com.site.blog.my.core.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.site.blog.my.core.mapper.NotebookNameMapper;
 import com.site.blog.my.core.entity.NotebookName;
+import com.site.blog.my.core.mapper.NotebookNameMapper;
 import com.site.blog.my.core.service.NotebookNameService;
+
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+
+import javax.annotation.Resource;
 @Service
 public class NotebookNameServiceImpl implements NotebookNameService{
 
@@ -23,6 +27,8 @@ public class NotebookNameServiceImpl implements NotebookNameService{
 
     @Override
     public int insertSelective(NotebookName record) {
+        record.setCreateTime(new Date());
+        record.setUpdateTime(new Date());
         return notebookNameMapper.insertSelective(record);
     }
 
@@ -41,4 +47,23 @@ public class NotebookNameServiceImpl implements NotebookNameService{
         return notebookNameMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public NotebookName selectAll() {
+        return notebookNameMapper.selectAll();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

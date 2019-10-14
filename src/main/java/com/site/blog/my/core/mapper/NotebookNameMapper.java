@@ -14,4 +14,11 @@ public interface NotebookNameMapper {
     int updateByPrimaryKeySelective(NotebookName record);
 
     int updateByPrimaryKey(NotebookName record);
+
+    /**
+     * 查询所有笔记本
+     *
+     * @return NotebookName
+     */
+    NotebookName selectAll();
 }

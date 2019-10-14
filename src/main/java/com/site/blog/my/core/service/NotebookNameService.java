@@ -1,7 +1,8 @@
 package com.site.blog.my.core.service;
 
 import com.site.blog.my.core.entity.NotebookName;
-public interface NotebookNameService{
+
+public interface NotebookNameService {
 
 
     int deleteByPrimaryKey(Long id);
@@ -16,4 +17,10 @@ public interface NotebookNameService{
 
     int updateByPrimaryKey(NotebookName record);
 
+    /**
+     * 查询所有笔记本
+     *
+     * @return NotebookName
+     */
+    NotebookName selectAll();
 }

@@ -3,11 +3,13 @@ package com.site.blog.my.core.controller.blog;
 import com.site.blog.my.core.controller.vo.BlogDetailVO;
 import com.site.blog.my.core.entity.BlogComment;
 import com.site.blog.my.core.entity.BlogLink;
+import com.site.blog.my.core.entity.NotebookName;
 import com.site.blog.my.core.service.BlogService;
 import com.site.blog.my.core.service.CategoryService;
 import com.site.blog.my.core.service.CommentService;
 import com.site.blog.my.core.service.ConfigService;
 import com.site.blog.my.core.service.LinkService;
+import com.site.blog.my.core.service.NotebookNameService;
 import com.site.blog.my.core.service.TagService;
 import com.site.blog.my.core.util.MyBlogUtils;
 import com.site.blog.my.core.util.PageResult;
@@ -54,16 +56,19 @@ public class MyBlogController {
     private CommentService commentService;
     private ConfigService configService;
     private CategoryService categoryService;
+    private NotebookNameService notebookNameService;
 
     @Autowired
-    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService) {
+    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService, NotebookNameService notebookNameService) {
         this.blogService = blogService;
         this.tagService = tagService;
         this.linkService = linkService;
         this.commentService = commentService;
         this.configService = configService;
         this.categoryService = categoryService;
+        this.notebookNameService = notebookNameService;
     }
+
 
     /**
      * 首页
@@ -319,6 +324,19 @@ public class MyBlogController {
         ModelAndView view = new ModelAndView();
         view.setViewName("notes/note-index");
         return view;
+    }
+
+    @PostMapping("/notes/notebook")
+    public Result saveNotebookName(NotebookName notebookName) {
+        int result = notebookNameService.insertSelective(notebookName);
+        return result > 0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("数据插入失败");
+    }
+
+    @GetMapping("/notes/notebook")
+    @ResponseBody
+    public Result getNotebookName() {
+        NotebookName notebookName = notebookNameService.selectAll();
+        return notebookName != null ? ResultGenerator.genSuccessResult(notebookName) : ResultGenerator.genSuccessResult(ResultGenerator.DEFAULT_SUCCESS_MESSAGE_NOT_FIND);
     }
 
 }
