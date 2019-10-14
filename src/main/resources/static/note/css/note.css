@@ -285,6 +285,7 @@ a {
 }
 
 #nav .pure-menu-heading {
+    text-align: center;
     border-bottom: none;
     font-size: 110%;
     color: rgb(75, 113, 151);

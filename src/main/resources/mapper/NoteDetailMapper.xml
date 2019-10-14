@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.site.blog.my.core.mapper.NoteDetailMapper">
+  <resultMap id="BaseResultMap" type="com.site.blog.my.core.entity.NoteDetail">
+    <!--@mbg.generated-->
+    <!--@Table tb_note_detail-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="notebook_name" jdbcType="INTEGER" property="notebookName" />
+    <result column="note_name" jdbcType="VARCHAR" property="noteName" />
+    <result column="note_desc" jdbcType="VARCHAR" property="noteDesc" />
+    <result column="note_content" jdbcType="LONGVARCHAR" property="noteContent" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="note_label" jdbcType="INTEGER" property="noteLabel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, notebook_name, note_name, note_desc, note_content, img_url, create_time, update_time, 
+    note_label
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tb_note_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from tb_note_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.site.blog.my.core.entity.NoteDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_note_detail (notebook_name, note_name, note_desc, 
+      note_content, img_url, create_time, 
+      update_time, note_label)
+    values (#{notebookName,jdbcType=INTEGER}, #{noteName,jdbcType=VARCHAR}, #{noteDesc,jdbcType=VARCHAR}, 
+      #{noteContent,jdbcType=LONGVARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{noteLabel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.site.blog.my.core.entity.NoteDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_note_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="notebookName != null">
+        notebook_name,
+      </if>
+      <if test="noteName != null">
+        note_name,
+      </if>
+      <if test="noteDesc != null">
+        note_desc,
+      </if>
+      <if test="noteContent != null">
+        note_content,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="noteLabel != null">
+        note_label,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="notebookName != null">
+        #{notebookName,jdbcType=INTEGER},
+      </if>
+      <if test="noteName != null">
+        #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="noteDesc != null">
+        #{noteDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="noteContent != null">
+        #{noteContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noteLabel != null">
+        #{noteLabel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.site.blog.my.core.entity.NoteDetail">
+    <!--@mbg.generated-->
+    update tb_note_detail
+    <set>
+      <if test="notebookName != null">
+        notebook_name = #{notebookName,jdbcType=INTEGER},
+      </if>
+      <if test="noteName != null">
+        note_name = #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="noteDesc != null">
+        note_desc = #{noteDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="noteContent != null">
+        note_content = #{noteContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noteLabel != null">
+        note_label = #{noteLabel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.site.blog.my.core.entity.NoteDetail">
+    <!--@mbg.generated-->
+    update tb_note_detail
+    set notebook_name = #{notebookName,jdbcType=INTEGER},
+      note_name = #{noteName,jdbcType=VARCHAR},
+      note_desc = #{noteDesc,jdbcType=VARCHAR},
+      note_content = #{noteContent,jdbcType=LONGVARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      note_label = #{noteLabel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
