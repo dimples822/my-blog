@@ -322,7 +322,9 @@ public class MyBlogController {
     @GetMapping("/notes")
     public ModelAndView getNotes() {
         ModelAndView view = new ModelAndView();
+        NotebookName notebookName = notebookNameService.selectAll();
         view.setViewName("notes/note-index");
+        view.addObject("notebookName",notebookName);
         return view;
     }
 

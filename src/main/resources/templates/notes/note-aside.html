@@ -9,19 +9,28 @@
 
         <div class="pure-menu">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">文件夹一
-                    <span class="note-count">(2)</span></a></li>
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">文件夹二</a>
-                </li>
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">文件夹三</a>
+                <li class="pure-menu-item" th:each="notebook : ${notebookName}">
+                    <a href="javascript:void(0);" class="pure-menu-link">
+                        <span th:text="${notebook.notebookName}">文件夹一</span>
+                        (&nbsp;<span class="note-count" th:text="${notebook.count}">2</span>&nbsp;)
+                    </a>
                 </li>
                 <li class="pure-menu-heading">分类</li>
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link"><span
-                        class="note-label-personal"></span>学习</a></li>
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link"><span
-                        class="note-label-work"></span>工作</a></li>
-                <li class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link"><span
-                        class="note-label-travel"></span>杂记</a></li>
+                <li class="pure-menu-item">
+                    <a href="javascript:void(0);" class="pure-menu-link">
+                        <span class="note-label-personal"></span>学习
+                    </a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="javascript:void(0);" class="pure-menu-link">
+                        <span class="note-label-work"></span>工作
+                    </a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="javascript:void(0);" class="pure-menu-link">
+                        <span class="note-label-travel"></span>杂记
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

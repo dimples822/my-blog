@@ -11,6 +11,10 @@ a {
     color: #1b98f8;
 }
 
+hr {
+    opacity: 0.5;
+}
+
 
 /*
  * -- HELPER STYLES --
@@ -288,7 +292,7 @@ a {
     text-align: center;
     border-bottom: none;
     font-size: 110%;
-    color: rgb(75, 113, 151);
+    color: rgb(0, 140, 140);
 }
 
 

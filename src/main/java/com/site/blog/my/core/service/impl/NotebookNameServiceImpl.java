@@ -22,6 +22,11 @@ public class NotebookNameServiceImpl implements NotebookNameService{
 
     @Override
     public int insert(NotebookName record) {
+        record.setCreateTime(new Date());
+        record.setUpdateTime(new Date());
+        if(record.getCount()== null) {
+            record.setCount(0);
+        }
         return notebookNameMapper.insert(record);
     }
 
@@ -29,6 +34,9 @@ public class NotebookNameServiceImpl implements NotebookNameService{
     public int insertSelective(NotebookName record) {
         record.setCreateTime(new Date());
         record.setUpdateTime(new Date());
+        if(record.getCount()== null) {
+            record.setCount(0);
+        }
         return notebookNameMapper.insertSelective(record);
     }
 
