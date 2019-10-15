@@ -3,12 +3,15 @@ package com.site.blog.my.core.controller.blog;
 import com.site.blog.my.core.controller.vo.BlogDetailVO;
 import com.site.blog.my.core.entity.BlogComment;
 import com.site.blog.my.core.entity.BlogLink;
+import com.site.blog.my.core.entity.NoteDetail;
 import com.site.blog.my.core.entity.NotebookName;
 import com.site.blog.my.core.service.BlogService;
 import com.site.blog.my.core.service.CategoryService;
 import com.site.blog.my.core.service.CommentService;
 import com.site.blog.my.core.service.ConfigService;
 import com.site.blog.my.core.service.LinkService;
+import com.site.blog.my.core.service.NoteDetailService;
+import com.site.blog.my.core.service.NoteLabelService;
 import com.site.blog.my.core.service.NotebookNameService;
 import com.site.blog.my.core.service.TagService;
 import com.site.blog.my.core.util.MyBlogUtils;
@@ -58,9 +61,11 @@ public class MyBlogController {
     private ConfigService configService;
     private CategoryService categoryService;
     private NotebookNameService notebookNameService;
+    private NoteDetailService noteDetailService;
+    private NoteLabelService noteLabelService;
 
     @Autowired
-    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService, NotebookNameService notebookNameService) {
+    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService, NotebookNameService notebookNameService, NoteDetailService noteDetailService, NoteLabelService noteLabelService) {
         this.blogService = blogService;
         this.tagService = tagService;
         this.linkService = linkService;
@@ -68,8 +73,9 @@ public class MyBlogController {
         this.configService = configService;
         this.categoryService = categoryService;
         this.notebookNameService = notebookNameService;
+        this.noteDetailService = noteDetailService;
+        this.noteLabelService = noteLabelService;
     }
-
 
     /**
      * 首页
@@ -327,6 +333,12 @@ public class MyBlogController {
         view.setViewName("notes/note-index");
         view.addObject("notebookName", notebookName);
         return view;
+    }
+
+    @GetMapping("/notes/{id}")
+    @ResponseBody
+    public NoteDetail getNotesDetailById(@PathVariable() Long id){
+        return noteDetailService.selectByPrimaryKey(id);
     }
 
     /**
