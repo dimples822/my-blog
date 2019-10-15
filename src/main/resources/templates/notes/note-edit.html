@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>笔记编辑</title>
+    <link rel="icon" th:href="@{/img/logo_zhongyj.png}"/>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/note/css/note.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+          crossorigin="anonymous">
+    <!-- MarkDown编辑器 -->
+    <link th:href="@{/admin/plugins/editormd/css/editormd.css}" rel="stylesheet"/>
+    <link th:href="@{/admin/plugins/tagsinput/jquery.tagsinput.css}" rel="stylesheet"/>
+    <link th:href="@{/admin/plugins/select2/select2.css}" rel="stylesheet"/>
+
+    <!--<link rel="stylesheet" th:href="@{/admin/dist/css/font-awesome.min.css}">
+    &lt;!&ndash; Ionicons &ndash;&gt;
+    <link rel="stylesheet" th:href="@{/admin/dist/css/ionicons.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/dist/css/main.css}">
+    <link rel="stylesheet" th:href="@{/admin/plugins/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/plugins/sweetalert/sweetalert.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/plugins/jqgrid-5.3.0/ui.jqgrid-bootstrap4.css}"/>
+    &lt;!&ndash; Theme style &ndash;&gt;
+    <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">-->
+</head>
+<body>
+<!-- 搜索框 -->
+<form id="full-search">
+    <label for="full-search-text"></label>
+    <input type="text" id="full-search-text" placeholder="好记性不如烂键盘" name="search">
+</form>
+
+<div id="layout" class="content pure-g">
+    <!-- 导航 -->
+    <div th:replace="notes/note-aside::aside-nav"></div>
+
+    <!-- 笔记详情列表 -->
+    <div th:replace="notes/note-aside::aside-list"></div>
+
+    <!-- 笔记内容 -->
+    <div id="main" class="pure-u-1">
+        <div th:replace="notes/note-edit-content::note-edit-content"></div>
+    </div>
+</div>
+
+<!-- 移动设备底部导航，默认隐藏 -->
+<nav th:replace="notes/note-aside::aside-mobile-bottom-nav"></nav>
+</body>
+
+<script src="https://yui-s.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script th:src="@{/note/js/note-index.js}"></script>
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<!-- editor.md -->
+<script th:src="@{/admin/plugins/editormd/editormd.min.js}"></script>
+<!-- tagsinput -->
+<script th:src="@{/admin/plugins/tagsinput/jquery.tagsinput.min.js}"></script>
+<!-- Select2 -->
+<script th:src="@{/admin/plugins/select2/select2.full.min.js}"></script>
+<!-- sweetalert -->
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<!-- ajaxupload -->
+<script th:src="@{/admin/plugins/ajaxupload/ajaxupload.js}"></script>
+<!-- editor.md 编辑器 -->
+<script th:src="@{/admin/plugins/editormd/editormd.min.js}"></script>
+<script th:src="@{/admin/dist/js/public.js}"></script>
+<script th:src="@{/admin/dist/js/edit.js}"></script>
+<script>
+    YUI().use('node-base', 'node-event-delegate', function (Y) {
+
+        let menuButton = Y.one('.nav-menu-button'),
+            nav = Y.one('#nav');
+
+        // Setting the active class name expands the menu vertically on small screens.
+        menuButton.on('click', function () {
+            nav.toggleClass('active');
+        });
+
+        // Your application code goes here...
+
+    });
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,10 +11,6 @@ a {
     color: #1b98f8;
 }
 
-hr {
-    opacity: 0.5;
-}
-
 
 /*
  * -- HELPER STYLES --
@@ -301,7 +297,7 @@ hr {
  * Styles relevant to the note messages, labels, counts, and more.
  */
 .note-count {
-    color: rgb(75, 113, 151);
+    color: #ffc94c;
 }
 
 .note-label-personal,
@@ -429,7 +425,13 @@ hr {
     height: 40px;
 }
 
+#blog-editormd {
+    margin-top: 1%;
+}
 
+hr {
+    opacity: 0.5;
+}
 /*
  * -- TABLET (AND UP) MEDIA QUERIES --
  * On tablets and other medium-sized devices, we want to customize some
@@ -545,4 +547,29 @@ hr {
         padding: 0;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

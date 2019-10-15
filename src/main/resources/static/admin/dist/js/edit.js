@@ -7,7 +7,7 @@ $('#blogTags').tagsInput({
 });
 
 //Initialize Select2 Elements
-$('.select2').select2()
+$('.select2').select2();
 
 $(function () {
     blogEditor = editormd("blog-editormd", {
@@ -50,7 +50,7 @@ $(function () {
                                     alert("上传失败");
                                 }
                             }
-                        }
+                        };
                         xhr.send(formData);
                     }
                 }
@@ -71,8 +71,9 @@ $(function () {
         },
         onComplete: function (file, r) {
             if (r != null && r.resultCode == 200) {
-                $("#blogCoverImage").attr("src", r.data);
-                $("#blogCoverImage").attr("style", "width: 128px;height: 128px;display:block;");
+                let blogCoverImage = $("#blogCoverImage");
+                blogCoverImage.attr("src", r.data);
+                blogCoverImage.attr("style", "width: 128px;height: 128px;display:block;");
                 return false;
             } else {
                 alert("error");
@@ -206,7 +207,6 @@ $('#saveButton').click(function () {
                     icon: "error",
                 });
             }
-            ;
         },
         error: function () {
             swal("操作失败", {
@@ -225,6 +225,7 @@ $('#cancelButton').click(function () {
  */
 $('#randomCoverImage').click(function () {
     var rand = parseInt(Math.random() * 40 + 1);
-    $("#blogCoverImage").attr("src", '/admin/dist/img/rand/' + rand + ".jpg");
-    $("#blogCoverImage").attr("style", "width:160px ;height: 120px;display:block;");
+    let blogCoverImage = $("#blogCoverImage");
+    blogCoverImage.attr("src", '/admin/dist/img/rand/' + rand + ".jpg");
+    blogCoverImage.attr("style", "width:160px ;height: 120px;display:block;");
 });

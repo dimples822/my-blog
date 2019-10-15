@@ -324,21 +324,46 @@ public class MyBlogController {
         ModelAndView view = new ModelAndView();
         NotebookName notebookName = notebookNameService.selectAll();
         view.setViewName("notes/note-index");
-        view.addObject("notebookName",notebookName);
+        view.addObject("notebookName", notebookName);
         return view;
     }
 
+    /**
+     * 插入笔记本名称
+     *
+     * @param notebookName NotebookName
+     * @return Result
+     */
     @PostMapping("/notes/notebook")
     public Result saveNotebookName(NotebookName notebookName) {
         int result = notebookNameService.insertSelective(notebookName);
         return result > 0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("数据插入失败");
     }
 
+    /**
+     * 获取所有笔记本
+     *
+     * @return Result
+     */
     @GetMapping("/notes/notebook")
     @ResponseBody
     public Result getNotebookName() {
         NotebookName notebookName = notebookNameService.selectAll();
         return notebookName != null ? ResultGenerator.genSuccessResult(notebookName) : ResultGenerator.genSuccessResult(ResultGenerator.DEFAULT_SUCCESS_MESSAGE_NOT_FIND);
+    }
+
+    /**
+     * 笔记编辑
+     *
+     * @return ModelAndView
+     */
+    @GetMapping("/notes/edit")
+    public ModelAndView notesEdit() {
+        ModelAndView view = new ModelAndView();
+        NotebookName notebookName = notebookNameService.selectAll();
+        view.setViewName("notes/note-edit");
+        view.addObject("notebookName",notebookName);
+        return view;
     }
 
 }
