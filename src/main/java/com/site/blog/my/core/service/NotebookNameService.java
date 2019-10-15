@@ -2,6 +2,8 @@ package com.site.blog.my.core.service;
 
 import com.site.blog.my.core.entity.NotebookName;
 
+import java.util.List;
+
 public interface NotebookNameService {
 
 
@@ -22,5 +24,5 @@ public interface NotebookNameService {
      *
      * @return NotebookName
      */
-    NotebookName selectAll();
+    List<NotebookName> selectAll();
 }

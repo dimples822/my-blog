@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -322,7 +323,7 @@ public class MyBlogController {
     @GetMapping("/notes")
     public ModelAndView getNotes() {
         ModelAndView view = new ModelAndView();
-        NotebookName notebookName = notebookNameService.selectAll();
+        List<NotebookName> notebookName = notebookNameService.selectAll();
         view.setViewName("notes/note-index");
         view.addObject("notebookName", notebookName);
         return view;
@@ -348,7 +349,7 @@ public class MyBlogController {
     @GetMapping("/notes/notebook")
     @ResponseBody
     public Result getNotebookName() {
-        NotebookName notebookName = notebookNameService.selectAll();
+        List<NotebookName> notebookName = notebookNameService.selectAll();
         return notebookName != null ? ResultGenerator.genSuccessResult(notebookName) : ResultGenerator.genSuccessResult(ResultGenerator.DEFAULT_SUCCESS_MESSAGE_NOT_FIND);
     }
 
@@ -360,9 +361,14 @@ public class MyBlogController {
     @GetMapping("/notes/edit")
     public ModelAndView notesEdit() {
         ModelAndView view = new ModelAndView();
-        NotebookName notebookName = notebookNameService.selectAll();
-        view.setViewName("notes/note-edit");
+        List<NotebookName> notebookName = notebookNameService.selectAll();
+        List<String> labelName = new ArrayList<>(3);
+        labelName.add("学习");
+        labelName.add("工作");
+        labelName.add("杂记");
         view.addObject("notebookName",notebookName);
+        view.addObject("labelName",labelName);
+        view.setViewName("notes/note-edit");
         return view;
     }
 

@@ -7,6 +7,7 @@ import com.site.blog.my.core.service.NotebookNameService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 @Service
@@ -56,7 +57,7 @@ public class NotebookNameServiceImpl implements NotebookNameService{
     }
 
     @Override
-    public NotebookName selectAll() {
+    public List<NotebookName> selectAll() {
         return notebookNameMapper.selectAll();
     }
 }

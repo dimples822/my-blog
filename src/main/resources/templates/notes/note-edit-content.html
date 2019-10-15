@@ -9,9 +9,7 @@
             </p>
         </div>
         <div class="note-content-controls pure-u-1-2">
-            <button class="secondary-button pure-button" id="note-add"><a th:href="@{/notes/edit}">新增</a>
-            </button>
-            <button class="secondary-button pure-button">移动至</button>
+            <button class="secondary-button pure-button" id="note-add"><a th:href="@{}">保存</a></button>
         </div>
     </div>
 
@@ -24,39 +22,33 @@
             </p>
             <div class="card-header">
                 <h3 class="card-title">发布文章</h3>
-                <hr/>
             </div>
             <div class="form-group" style="display:flex;">
                 <label for="notebookId"></label>
                 <select class="form-control select2" style="width: 100%;"
-                                                        id="notebookId"
-                                                        data-placeholder="请选择分类...">
-                    <th:block th:if="${null == categories}">
-                        <option value="0" selected="selected">默认分类</option>
+                        id="blogCategoryId"
+                        data-placeholder="请选择分类...">
+                    <th:block th:if="${null == labelName}">
+                        <option value="1" selected="selected">学习</option>
                     </th:block>
-                    <th:block th:unless="${null == categories}">
-                        <th:block th:each="c : ${categories}">
-                            <option th:value="${c.categoryId}"
-                                    th:text="${c.categoryName}"
-                                    th:selected="${null !=blog and null !=blog.blogCategoryId and blog.blogCategoryId==c.categoryId} ?true:false">
-                                >
+                    <th:block th:unless="${null == labelName}">
+                        <th:block th:each="label : ${labelName}">
+                            <option th:value="${label}" th:text="${label}">
+                                学习
                             </option>
                         </th:block>
                     </th:block>
                 </select> &nbsp;&nbsp;
                 <label for="blogCategoryId"></label>
                 <select class="form-control select2" style="width: 100%;"
-                                                            id="blogCategoryId"
-                                                            data-placeholder="请选择分类...">
-                    <th:block th:if="${null == categories}">
-                        <option value="0" selected="selected">默认分类</option>
+                        id="notebookId"
+                        data-placeholder="请选择笔记本...">
+                    <th:block th:if="${null == notebookName}">
+                        <option value="2" selected="selected">默认笔记本</option>
                     </th:block>
-                    <th:block th:unless="${null == categories}">
-                        <th:block th:each="c : ${categories}">
-                            <option th:value="${c.categoryId}"
-                                    th:text="${c.categoryName}"
-                                    th:selected="${null !=blog and null !=blog.blogCategoryId and blog.blogCategoryId==c.categoryId} ?true:false">
-                                >
+                    <th:block th:unless="${null == notebookName}">
+                        <th:block th:each="notebook : ${notebookName}">
+                            <option th:value="${notebook.Id}" th:text="${notebook.notebookName}">
                             </option>
                         </th:block>
                     </th:block>

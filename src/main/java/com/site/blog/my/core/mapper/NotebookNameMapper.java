@@ -2,6 +2,8 @@ package com.site.blog.my.core.mapper;
 
 import com.site.blog.my.core.entity.NotebookName;
 
+import java.util.List;
+
 public interface NotebookNameMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -20,5 +22,5 @@ public interface NotebookNameMapper {
      *
      * @return NotebookName
      */
-    NotebookName selectAll();
+    List<NotebookName> selectAll();
 }

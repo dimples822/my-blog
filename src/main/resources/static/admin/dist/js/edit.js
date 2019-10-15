@@ -10,6 +10,7 @@ $('#blogTags').tagsInput({
 $('.select2').select2();
 
 $(function () {
+    // 初始化editor编辑器
     blogEditor = editormd("blog-editormd", {
         width: "100%",
         height: 640,
