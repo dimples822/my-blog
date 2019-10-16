@@ -1,5 +1,6 @@
 package com.site.blog.my.core.controller.blog;
 
+import com.site.blog.my.core.config.Constants;
 import com.site.blog.my.core.controller.vo.BlogDetailVO;
 import com.site.blog.my.core.entity.BlogComment;
 import com.site.blog.my.core.entity.BlogLink;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -329,15 +331,23 @@ public class MyBlogController {
     @GetMapping("/notes")
     public ModelAndView getNotes() {
         ModelAndView view = new ModelAndView();
-        List<NotebookName> notebookName = notebookNameService.selectAll();
         view.setViewName("notes/note-index");
+        List<NotebookName> notebookName = notebookNameService.selectAll();
+        NoteDetail noteDetail = noteDetailService.selectByPrimaryKey(1L);
         view.addObject("notebookName", notebookName);
+        view.addObject("noteDetail", noteDetail);
         return view;
     }
 
+    /**
+     * 根据id获取笔记
+     *
+     * @param id Long
+     * @return NoteDetail
+     */
     @GetMapping("/notes/{id}")
     @ResponseBody
-    public NoteDetail getNotesDetailById(@PathVariable() Long id){
+    public NoteDetail getNotesDetailById(@PathVariable() Long id) {
         return noteDetailService.selectByPrimaryKey(id);
     }
 
@@ -375,11 +385,9 @@ public class MyBlogController {
         ModelAndView view = new ModelAndView();
         List<NotebookName> notebookName = notebookNameService.selectAll();
         List<String> labelName = new ArrayList<>(3);
-        labelName.add("学习");
-        labelName.add("工作");
-        labelName.add("杂记");
-        view.addObject("notebookName",notebookName);
-        view.addObject("labelName",labelName);
+        labelName.addAll(Arrays.asList(Constants.LABEL_LIST));
+        view.addObject("notebookName", notebookName);
+        view.addObject("labelName", labelName);
         view.setViewName("notes/note-edit");
         return view;
     }

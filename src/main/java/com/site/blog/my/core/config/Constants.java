@@ -13,4 +13,6 @@ public class Constants {
 //    public final static String FILE_UPLOAD_DIC = "/opt/deploy/upload/";
 
     public final static String FILE_UPLOAD_DIC = "C:/deploy/upload/";
+
+    public final static String [] LABEL_LIST = {"学习","工作","杂记"};
 }

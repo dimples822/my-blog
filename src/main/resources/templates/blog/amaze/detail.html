@@ -7,6 +7,7 @@
     <meta name="description" th:content="${configurations.get('websiteDescription')}">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" th:href="@{${configurations.get('websiteIcon')}}"/>
+
     <link rel="stylesheet" th:href="@{/blog/amaze/css/base.css}">
     <!-- highlight -->
     <link rel="stylesheet" th:href="@{/blog/plugins/highlight/styles/paraiso-light.css}">
@@ -21,7 +22,7 @@
 
         blockquote {
             border-left: 4px solid #42b983;
-            padding: 10px 0px 10px 15px;
+            padding: 10px 0 10px 15px;
             color: #777;
             background-color: rgba(66, 185, 131, .1);
             max-width: 890px;
@@ -74,12 +75,13 @@
             <hr>
         </div>
     </div>
+    <!-- 评论列表 -->
     <aside class="comments" id="comments">
         <th:block th:if="${null != commentPageResult}">
             <th:block th:each="comment,iterStat : ${commentPageResult.list}">
                 <article class="comment">
                     <header class="clearfix">
-                        <img th:src="@{/blog/default/img/avatar.png}" class="avatar">
+                        <img th:src="@{/blog/default/img/avatar.png}" class="avatar" alt="">
                         <div class="meta">
                             <h3 th:text="${comment.commentator}"></h3>
                             <span class="date">
@@ -204,9 +206,11 @@
 </body>
 <script th:src="@{/blog/default/js/jquery.min.js}"></script>
 <script th:src="@{/blog/plugins/highlight/highlight.pack.js}"></script>
+<!-- 校验 -->
 <script th:src="@{/blog/plugins/comment/valid.js}"></script>
+<!-- 评论检验 -->
 <script th:src="@{/blog/plugins/comment/comment.js}"></script>
-<!-- sweetalert -->
+<!-- sweetalert 弹出框 -->
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <script>
     $(function () {
