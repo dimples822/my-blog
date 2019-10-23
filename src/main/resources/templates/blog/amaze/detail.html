@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
-<html>
 <head>
     <title th:text="${configurations.get('websiteName')}+' | '+${pageName}">详情页</title>
     <meta name="description" th:content="${configurations.get('websiteDescription')}">
@@ -169,7 +168,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="websiteUrl"></label><input type="text" name="websiteUrl" id="websiteUrl"
+                        <label for="websiteUrl"></label><input type="text" name="websiteUrl"
+                                                               id="websiteUrl"
                                                                placeholder="你的网站地址(可不填)">
                     </td>
                 </tr>
@@ -208,7 +208,7 @@
 <script th:src="@{/blog/plugins/highlight/highlight.pack.js}"></script>
 <!-- 校验 -->
 <script th:src="@{/blog/plugins/comment/valid.js}"></script>
-<!-- 评论检验 -->
+<!-- 评论检验提交 -->
 <script th:src="@{/blog/plugins/comment/comment.js}"></script>
 <!-- sweetalert 弹出框 -->
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
@@ -238,3 +238,4 @@
     })
 </script>
 </html>
+

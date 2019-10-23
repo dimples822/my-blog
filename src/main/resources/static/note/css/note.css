@@ -499,7 +499,7 @@ a {
         bottom: 0;
         left: 150px;
         overflow: auto;
-        width: auto; /* so that it's not 100% */
+        width: 100%; /* so that it's not 100% */
     }
 
     .note-item-search {
@@ -513,9 +513,9 @@ a {
         padding: 0;
     }
 
-    .note-content-header {
+    /*.note-content-header {
         height: 5em;
-    }
+    }*/
 
     .mobile-bottom-nav {
         display: none;

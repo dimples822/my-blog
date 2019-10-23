@@ -380,14 +380,24 @@ public class MyBlogController {
      *
      * @return ModelAndView
      */
-    @GetMapping("/notes/edit")
-    public ModelAndView notesEdit() {
+    @GetMapping({"/notes/edit/{id}"})
+    public ModelAndView notesEdit(@PathVariable Long id) {
         ModelAndView view = new ModelAndView();
         List<NotebookName> notebookName = notebookNameService.selectAll();
         List<String> labelName = new ArrayList<>(3);
         labelName.addAll(Arrays.asList(Constants.LABEL_LIST));
+        NoteDetail noteDetail = noteDetailService.selectByPrimaryKey(id);
         view.addObject("notebookName", notebookName);
         view.addObject("labelName", labelName);
+        view.addObject("noteDetail", noteDetail);
+        view.addObject("pageType", "edit");
+        view.setViewName("notes/note-edit");
+        return view;
+    }
+
+    @GetMapping("/notes/add")
+    public ModelAndView notesAdd() {
+        ModelAndView view = new ModelAndView();
         view.setViewName("notes/note-edit");
         return view;
     }

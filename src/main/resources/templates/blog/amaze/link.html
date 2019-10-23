@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="blog/amaze/header::head-fragment"></head>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/amaze/header::head-fragment"><title></title></head>
 <body id="blog">
 <div th:replace="blog/amaze/header::nav-fragment"></div>
 <div th:replace="blog/amaze/header::header-fragment"></div>
@@ -17,7 +17,7 @@
                             <li><a th:href="@{${favoriteLink.linkUrl}}"
                                    th:text="${favoriteLink.linkName}">友链</a>
                                 -
-                                <th:block th:text="${favoriteLink.linkDescription}"></th:block>
+                                <th:block th:text="${favoriteLink.linkDescription}"/>
                             </li>
                         </th:block>
                     </ul>
@@ -33,7 +33,7 @@
                             <li><a th:href="@{${recommendLink.linkUrl}}"
                                    th:text="${recommendLink.linkName}">推荐网站</a>
                                 -
-                                <th:block th:text="${recommendLink.linkDescription}"></th:block>
+                                <th:block th:text="${recommendLink.linkDescription}"/>
                             </li>
                         </th:block>
                     </ul>
@@ -49,7 +49,7 @@
                             <li><a th:href="@{${personalLink.linkUrl}}"
                                    th:text="${personalLink.linkName}">个人链接</a>
                                 -
-                                <th:block th:text="${personalLink.linkDescription}"></th:block>
+                                <th:block th:text="${personalLink.linkDescription}"/>
                             </li>
                         </th:block>
                     </ul>
@@ -58,7 +58,7 @@
             <h2 id="个人链接">链接须知</h2>
             <p>欢迎互换友链 ^_^ 不过请确定贵站可以正常运营.</p>
             <p>我的邮箱是
-                <th:block th:text="${configurations.get('yourEmail')}"></th:block>
+                <th:block th:text="${configurations.get('yourEmail')}"/>
                 , 格式要求如下:
             </p>
             <ul>

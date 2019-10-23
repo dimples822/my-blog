@@ -7,10 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人笔记</title>
     <link rel="icon" th:href="@{/img/logo_zhongyj.png}"/>
+
+    <link rel="stylesheet" th:href="@{/note/css/note-base.css}">
+
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/note/css/note.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
           crossorigin="anonymous">
+
+    <!-- highlight -->
+    <link rel="stylesheet" th:href="@{/blog/plugins/highlight/styles/paraiso-light.css}">
+
+    <link rel="stylesheet" th:href="@{/note/css/note.css}">
+
+    <style>
+        .hljs {
+            background: none;
+        }
+
+        pre code {
+            white-space: pre;
+        }
+
+        blockquote {
+            border-left: 4px solid #42b983;
+            padding: 10px 0 10px 15px;
+            color: #777;
+            background-color: rgba(66, 185, 131, .1);
+            max-width: 890px;
+        }
+    </style>
 </head>
 <body>
 <!-- 搜索框 -->
@@ -37,40 +62,27 @@
                     </p>
                 </div>
                 <div class="note-content-controls pure-u-1-2">
-                    <button class="secondary-button pure-button" id="note-add"><a th:href="@{/notes/edit}">新增</a></button>
+                    <button class="secondary-button pure-button" id="note-edit"><a th:href="@{'/notes/edit/' + ${noteDetail.id}}">编辑</a></button>
+                    <button class="secondary-button pure-button" id="note-add"><a th:href="@{/notes/add}">新增</a></button>
                     <button class="secondary-button pure-button">移动至</button>
                 </div>
             </div>
 
-            <div class="note-content-body">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>
-                    Aliquam ac feugiat dolor. Proin mattis massa sit amet enim iaculis tincidunt.
-                    Mauris tempor mi vitae sem aliquet pharetra. Fusce in dui purus, nec malesuada
-                    mauris. Curabitur ornare arcu quis mi blandit laoreet. Vivamus imperdiet
-                    fermentum mauris, ac posuere urna tempor at. Duis pellentesque justo ac sapien
-                    aliquet egestas. Morbi enim mi, porta eget ullamcorper at, pharetra id lorem.
-                </p>
-                <p>
-                    Donec sagittis dolor ut quam pharetra pretium varius in nibh. Suspendisse
-                    potenti. Donec imperdiet, velit vel adipiscing bibendum, leo eros tristique
-                    augue, eu rutrum lacus sapien vel quam. Nam orci arcu, luctus quis vestibulum
-                    ut, ullamcorper ut enim. Morbi semper erat quis orci aliquet condimentum. Nam
-                    interdum mauris sed massa dignissim rhoncus.
-                </p>
-                <p>
-                    Regards,<br>
-                    Tilo
-                </p>
+            <div class="note-content-body container">
+                <div class="am-g am-g-fixed blog-fixed">
+                    <div class="am-u-lg-12 am-u-sm-12">
+                        <article class="am-article blog-article-p article-trigger">
+                            <div id="post-content" class="am-article-bd article-body">
+                                <th:block th:utext="${noteDetail.noteContent}"/>
+                                <hr>
+                                <aside class="blog-rights clearfix">
+                                    <p>
+                                        本站文章除注明转载/出处外，皆为作者原创，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</p>
+                                </aside>
+                            </div>
+                        </article>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,8 +94,21 @@
 
 <script src="https://yui-s.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- markdown 解析 -->
+<script th:src="@{/blog/default/js/jquery.min.js}"></script>
+<script th:src="@{/blog/plugins/highlight/highlight.pack.js}"></script>
+
 <script th:src="@{/note/js/note-index.js}"></script>
 <script>
+
+    $(function () {
+        $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+
+        $('article h1, article h2, article h3, article h4, article h5').find('a').removeAttr('target')
+    });
+
     YUI().use('node-base', 'node-event-delegate', function (Y) {
 
         var menuButton = Y.one('.nav-menu-button'),

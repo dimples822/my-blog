@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="side-fragment"
      class="am-u-lg-4 am-u-sm-12 am-u-lg-offset-0 am-u-sm-offset-0 sidebar-container">
     <section>
@@ -12,9 +12,10 @@
             <div class="sidebar-search">
                 <form method="get" onsubmit="return false;" accept-charset="utf-8">
                     <div class="search-input">
+                        <label for="searchbox"></label>
                         <input type="text" name="keyword" id="searchbox" placeholder="输入关键字搜索">
                         <button type="submit" class="search-submit" onclick="search()"></button>
-                        <div>
+                    </div>
                 </form>
             </div>
         </section>
@@ -28,8 +29,7 @@
                 <th:block th:if="${null != hotTags}">
                     <th:block th:each="hotTag : ${hotTags}">
                         <a rel="tag" th:href="@{'/tag/' + ${hotTag.tagName}}">
-                            <th:block
-                                    th:text="${hotTag.tagName}+'('+${hotTag.tagCount}+')'"></th:block>
+                            <th:block th:text="${hotTag.tagName}+'('+${hotTag.tagCount}+')'"/>
                         </a>
                     </th:block>
                 </th:block>
@@ -48,7 +48,7 @@
                             <li class="sidebar-list-item"><a
                                     th:href="@{'/blog/' + ${newBlog.blogId}}"
                                     class="tag tooltipped tooltipped-n">
-                                <th:block th:text="${newBlog.blogTitle}"></th:block>
+                                <th:block th:text="${newBlog.blogTitle}"/>
                             </a></li>
                         </th:block>
                     </th:block>
@@ -67,12 +67,13 @@
                         <th:block th:each="hotBlog : ${hotBlogs}">
                             <li class="sidebar-list-item"><a class="tag tooltipped tooltipped-n"
                                                              th:href="@{'/blog/' + ${hotBlog.blogId}}">
-                                <th:block th:text="${hotBlog.blogTitle}"></th:block>
+                                <th:block th:text="${hotBlog.blogTitle}"/>
                             </a></li>
                         </th:block>
                     </th:block>
                 </ul>
             </main>
         </section>
+    </section>
 </div>
 </html>

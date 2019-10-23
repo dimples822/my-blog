@@ -45,7 +45,68 @@
 
     <!-- 笔记内容 -->
     <div id="main" class="pure-u-1">
-        <div th:replace="notes/note-edit-content::note-edit-content"></div>
+        <div class="note-content">
+            <div class="note-content-header pure-g">
+                <div class="pure-u-1-2">
+                    <h1 class="note-content-title">Hello from Toronto</h1>
+                    <p class="note-content-subtitle">
+                        At <span th:id="${pageType}">3:56pm, April 3, 2012</span>
+                    </p>
+                </div>
+                <div class="note-content-controls pure-u-1-2">
+                    <button class="secondary-button pure-button" id="note-add"><a href="#">保存</a>
+                    </button>
+                </div>
+            </div>
+
+            <form method="post" action="">
+                <div class="note-content-body">
+
+                    <div class="card-header">
+                        <h3 class="card-title">发布文章</h3>
+                    </div>
+                    <div class="form-group" style="display:flex;">
+                        <label for="notebookId"></label>
+                        <select class="form-control select2" style="width: 100%;"
+                                id="blogCategoryId"
+                                data-placeholder="请选择分类...">
+                            <th:block th:if="${null == labelName}">
+                                <option value="1" selected="selected">学习</option>
+                            </th:block>
+                            <th:block th:unless="${null == labelName}">
+                                <th:block th:each="label : ${labelName}">
+                                    <option th:value="${label}" th:text="${label}">
+                                        学习
+                                    </option>
+                                </th:block>
+                            </th:block>
+                        </select> &nbsp;&nbsp;
+                        <label for="blogCategoryId"></label>
+                        <select class="form-control select2" style="width: 100%;"
+                                id="notebookId"
+                                data-placeholder="请选择笔记本...">
+                            <th:block th:if="${null == notebookName}">
+                                <option value="2" selected="selected">默认笔记本</option>
+                            </th:block>
+                            <th:block th:unless="${null == notebookName}">
+                                <th:block th:each="notebook : ${notebookName}">
+                                    <option th:value="${notebook.Id}"
+                                            th:text="${notebook.notebookName}">
+                                    </option>
+                                </th:block>
+                            </th:block>
+                        </select>
+                    </div>
+                    <!-- 编辑器 -->
+                    <div class="form-group" id="blog-editormd">
+                        <label>
+                            <textarea
+                                    th:utext="${noteDetail!=null and noteDetail.noteContent !=null}?${noteDetail.noteContent}: ''"></textarea>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -97,20 +158,23 @@
     });
 
     $(function () {
-        getDateTimeWeek();
+        let pageType = $(".note-content-subtitle span").attr("id");
+        if (pageType === "edit") {
+            getDateTimeWeek();
+        }
     });
 
     /**
      * 获取日期时间星期
      */
     function getDateTimeWeek() {
-        var myDate = new Date();
-        var year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
-        var month = myDate.getMonth() + 1;       //获取当前月份(0-11,0代表1月)
-        var date = myDate.getDate();        //获取当前日(1-31)
-        var hours = myDate.getHours();//获取小时
-        var minutes = myDate.getMinutes();//获取分
-        var seconds = myDate.getSeconds();//获取秒
+        let myDate = new Date();
+        let year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+        let month = myDate.getMonth() + 1;       //获取当前月份(0-11,0代表1月)
+        let date = myDate.getDate();        //获取当前日(1-31)
+        let hours = myDate.getHours();//获取小时
+        let minutes = myDate.getMinutes();//获取分
+        let seconds = myDate.getSeconds();//获取秒
         //这些if判断是在小于10的时候前面自动补0
         if (month < 10) {
             month = '0' + month
@@ -128,7 +192,7 @@
             seconds = '0' + seconds
         }
         console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
-        var str = "星期" + "日一二三四五六".charAt(new Date().getDay());
+        let str = "星期" + "日一二三四五六".charAt(new Date().getDay());
         console.log(str);
         $(".note-content-subtitle span").text(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + " " + str);
     }

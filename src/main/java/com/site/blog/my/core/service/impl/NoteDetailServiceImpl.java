@@ -1,10 +1,13 @@
 package com.site.blog.my.core.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.site.blog.my.core.mapper.NoteDetailMapper;
 import com.site.blog.my.core.entity.NoteDetail;
+import com.site.blog.my.core.mapper.NoteDetailMapper;
 import com.site.blog.my.core.service.NoteDetailService;
+import com.site.blog.my.core.util.MarkDownUtil;
+
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 @Service
 public class NoteDetailServiceImpl implements NoteDetailService{
 
@@ -28,7 +31,10 @@ public class NoteDetailServiceImpl implements NoteDetailService{
 
     @Override
     public NoteDetail selectByPrimaryKey(Long id) {
-        return noteDetailMapper.selectByPrimaryKey(id);
+        NoteDetail noteDetail = noteDetailMapper.selectByPrimaryKey(id);
+        String noteContent = noteDetail.getNoteContent();
+        noteDetail.setNoteContent(MarkDownUtil.mdToHtml(noteContent));
+        return noteDetail;
     }
 
     @Override

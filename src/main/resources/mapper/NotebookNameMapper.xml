@@ -95,7 +95,7 @@
   </update>
 	<select id="selectAll" resultMap="BaseResultMap">
       select <include refid="Base_Column_List"/>
-      from tb_notebook_name order by id
+      from tb_notebook_name order by id DESC
     </select>
 </mapper>
 
