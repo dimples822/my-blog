@@ -1,4 +1,4 @@
-FROM penjdk:8
+FROM openjdk:8
 # 个人信息
 MAINTAINER zhongyj "1126834403@qq.com"
 
