@@ -1,6 +1,11 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-!/target/dimples-blog.jar
+!/target/dimples-blog.jar、
+
+### docker ###
+/src/main/docekr
+!/src/main/docekr/Dockerfile
+!/src/main/docker/dimples-blog.jar
 
 ### STS ###
 .apt_generated
