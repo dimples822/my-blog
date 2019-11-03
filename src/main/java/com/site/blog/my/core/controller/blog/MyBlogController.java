@@ -12,7 +12,6 @@ import com.site.blog.my.core.service.CommentService;
 import com.site.blog.my.core.service.ConfigService;
 import com.site.blog.my.core.service.LinkService;
 import com.site.blog.my.core.service.NoteDetailService;
-import com.site.blog.my.core.service.NoteLabelService;
 import com.site.blog.my.core.service.NotebookNameService;
 import com.site.blog.my.core.service.TagService;
 import com.site.blog.my.core.util.MyBlogUtils;
@@ -64,10 +63,9 @@ public class MyBlogController {
     private CategoryService categoryService;
     private NotebookNameService notebookNameService;
     private NoteDetailService noteDetailService;
-    private NoteLabelService noteLabelService;
 
     @Autowired
-    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService, NotebookNameService notebookNameService, NoteDetailService noteDetailService, NoteLabelService noteLabelService) {
+    public MyBlogController(BlogService blogService, TagService tagService, LinkService linkService, CommentService commentService, ConfigService configService, CategoryService categoryService, NotebookNameService notebookNameService, NoteDetailService noteDetailService) {
         this.blogService = blogService;
         this.tagService = tagService;
         this.linkService = linkService;
@@ -76,7 +74,6 @@ public class MyBlogController {
         this.categoryService = categoryService;
         this.notebookNameService = notebookNameService;
         this.noteDetailService = noteDetailService;
-        this.noteLabelService = noteLabelService;
     }
 
     /**
