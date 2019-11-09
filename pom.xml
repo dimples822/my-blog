@@ -19,12 +19,14 @@
 		<relativePath />
 	</parent>
 
+	<!-- 自定义变量 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<docker.image.prefix>dimples</docker.image.prefix>
 		<mvn.build.directory>${project.basedir}/src/main/docker</mvn.build.directory>
+		<build.final.name>dimples-blog</build.final.name>
 	</properties>
 
 	<dependencies>
@@ -85,7 +87,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>dimples-blog</finalName>
+		<finalName>${build.final.name}</finalName>
 		<!-- 更改mvn打包过后文件的生成目录 -->
 		<directory>${mvn.build.directory}</directory>
 		<plugins>
@@ -101,6 +103,7 @@
 				<version>0.4.11</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<imageTags>dimples</imageTags>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
